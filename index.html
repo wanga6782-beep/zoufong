@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<title>兆豐產物 資訊公開資料查詢</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--ink:#1b2437;--mut:#6b7488;--line:#e3e8f1;--pri:#1f4e9c;--pri2:#e8effb;--hi:#fff4d6;--bar:#4f86d6;--neg:#c0392b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1420;--card:#171e2e;--ink:#e8ecf5;--mut:#9aa5bd;--line:#2a3550;--pri:#7fa8ee;--pri2:#1e2a45;--hi:#3a3216;--bar:#5b8fe0;--neg:#ff7b6b}}
+:root[data-theme="dark"]{--bg:#0f1420;--card:#171e2e;--ink:#e8ecf5;--mut:#9aa5bd;--line:#2a3550;--pri:#7fa8ee;--pri2:#1e2a45;--hi:#3a3216;--bar:#5b8fe0;--neg:#ff7b6b}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 "Noto Sans TC","PingFang TC","Microsoft JhengHei",Arial,sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:16px 14px 110px}
+h1{font-size:21px;margin:6px 0 2px}.sub{color:var(--mut);font-size:12.5px;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px}
+.card h2{font-size:15px;margin:0 0 10px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 12px;border-radius:9px;font:inherit;font-size:13px;cursor:pointer}
+.btn.pri{background:var(--pri);color:#fff;border-color:var(--pri);font-weight:600}
+.btn:disabled{opacity:.5}
+input[type=search]{flex:1;min-width:140px;padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:var(--card);color:var(--ink);font:inherit;font-size:14px}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px;margin-top:10px;max-height:230px;overflow:auto}
+.chip{display:flex;gap:7px;align-items:center;padding:6px 9px;border:1px solid var(--line);border-radius:9px;font-size:13px;cursor:pointer}
+.chip.on{background:var(--pri2);border-color:var(--pri)}
+.opts{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px}.opts label{display:flex;gap:5px;align-items:center;cursor:pointer}
+.sw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:6px 9px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal;min-width:150px}
+th{background:var(--pri2);font-weight:600}
+tr.new td{background:var(--hi);font-weight:600}
+.neg{color:var(--neg)}
+.bar{display:inline-block;height:8px;border-radius:4px;background:var(--bar);vertical-align:middle;margin-left:6px}
+.tname{font-weight:700;font-size:15px;margin:0 0 8px}
+.dock{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px))}
+.dock .in{max-width:1000px;margin:0 auto;display:flex;gap:10px;align-items:center;justify-content:space-between}
+.msg{font-size:12.5px;color:var(--mut)}
+.note{font-size:12px;color:var(--mut);margin-top:6px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:14px;z-index:50}.mod{background:var(--card);color:var(--ink);border-radius:14px;max-width:560px;width:100%;max-height:85vh;display:flex;flex-direction:column}.mod .bd{overflow:auto;padding:14px}.mod .hd{padding:14px 14px 0;font-weight:700;font-size:16px}.mod .ft{padding:12px 14px calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;justify-content:flex-end;border-top:1px solid var(--line)}.mod h3{font-size:13.5px;margin:14px 0 6px}
+.tabs{display:flex;gap:6px;margin:0 0 14px;border-bottom:1px solid var(--line)}.tab{border:0;background:none;color:var(--mut);font:inherit;font-size:15px;font-weight:600;padding:9px 14px;border-bottom:3px solid transparent;cursor:pointer}.tab.on{color:var(--pri);border-bottom-color:var(--pri)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}.kpi{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--pri2)}.kl{font-size:12px;color:var(--mut)}.kv{font-size:20px;font-weight:700;margin:2px 0}.ks{font-size:11px;color:var(--mut);word-break:break-all}
+body{background:radial-gradient(1100px 380px at 50% -140px,var(--pri2),transparent),var(--bg)}
+h1{font-size:23px;letter-spacing:.02em}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin:0 -14px 14px;padding:0 14px}
+.tab:hover{color:var(--ink)}
+.card{border-radius:16px;box-shadow:0 1px 2px rgba(20,30,60,.05),0 6px 18px rgba(20,30,60,.04)}
+.card h2{display:flex;align-items:center;gap:8px;font-size:16px}.card h2::before{content:"";width:4px;height:16px;border-radius:2px;background:var(--pri)}
+.btn{min-height:36px;transition:border-color .15s,filter .15s}.btn:hover:not(:disabled){border-color:var(--pri)}.btn.pri:hover:not(:disabled){filter:brightness(1.1)}
+:focus-visible{outline:2px solid var(--pri);outline-offset:2px;border-radius:6px}
+.chip{min-height:36px;transition:border-color .15s,background .15s}.chip:hover{border-color:var(--pri)}input[type=checkbox]{accent-color:var(--pri);width:16px;height:16px}
+table tr:nth-child(even) td{background:color-mix(in srgb,var(--pri2) 35%,transparent)}
+table tr:hover td{background:var(--pri2)}
+tr.new td{background:var(--hi)!important}
+th:first-child,td:first-child{position:sticky;left:0;z-index:1;background:var(--card)}
+th:first-child{background:var(--pri2)}
+.kpi{background:var(--card);border-left:4px solid var(--pri)}.kv{color:var(--pri)}
+.dock{box-shadow:0 -6px 20px rgba(20,30,60,.08)}
+@media (max-width:520px){.chips{grid-template-columns:repeat(2,1fr)}h1{font-size:20px}.dock .in{gap:8px}.dock .row{flex:1;flex-wrap:nowrap}.dock .btn{flex:1}.msg{max-width:30%}}
+@media print{.tabs,.dock,.chips,.opts,.row,.ov{display:none!important}.card{box-shadow:none;break-inside:avoid}body{background:#fff}}
+</style></head><body>
+<div class="wrap">
+<h1>兆豐產物保險　資訊公開資料查詢</h1>
+<div class="sub">資料來源：金管會保險局「保險業公開資訊觀測站」</div><div class="tabs" role="tablist"><button class="tab on" id="t1" role="tab">業務概況</button><button class="tab" id="t2" role="tab">財務概況</button><button class="tab" id="t3" role="tab">近三年概況</button></div><div id="p1"><div class="note" style="margin:-6px 0 12px">業務概況：114／113／112 年度，金額單位為新臺幣元。</div>
+
+<div class="card"><h2>114 年度整體概況</h2><div class="kpis" id="kpi"></div><div class="note">資料來源：產險業務概況表（RPT-07010801），兆豐產物 114 年度；金額為新臺幣元。與下方各險別「總計」逐項核對一致。</div></div>
+<div class="card"><h2>① 選擇險別</h2>
+<div class="row"><input type="search" id="q" placeholder="搜尋險別…">
+<button class="btn" id="all">全選</button><button class="btn" id="none">清除</button></div>
+<div class="chips" id="chips"></div></div>
+
+<div class="card"><h2>② 選擇年度、項目與選項</h2>
+<div class="opts" id="years"></div><div class="opts" id="groups" style="margin-top:10px"></div><div class="opts" id="extra" style="margin-top:10px"></div></div>
+
+<div class="card"><h2>自留比率總覽</h2>
+<div class="sw"><table id="ov"></table></div>
+<div class="note">自留比率＝自留保費 ÷ 該險別保費收入(含再保)。</div></div>
+
+<div class="card"><h2>折線圖</h2><div class="note" style="margin:0 0 8px">勾選要畫成折線圖的項目，每個項目一張圖（橫軸為年度，每條線＝一個險別，由上方「選擇險別」決定）。</div><div class="chips" id="cm" style="max-height:none"></div><div id="cg" style="margin-top:14px"></div></div>
+<div id="detail"></div>
+</div>
+<div id="p2" hidden>
+<div class="card"><h2>① 選擇指標</h2><div class="row"><button class="btn" id="fall">全選</button><button class="btn" id="fnone">清除</button></div><div id="fchips" style="margin-top:10px"></div><div class="opts" id="fopt" style="margin-top:12px"></div></div>
+<div class="card"><h2>財務業務指標（114 年度及以前，IFRS）</h2><div class="sw"><table id="ft"></table></div><div class="note">單位：%。111 年度權益趨近於 0（淨值比率 0.05%），各種「對權益比率」等指標數值極端，解讀請留意。</div></div>
+<div class="card"><h2>折線圖</h2><div id="fc"></div></div>
+<div class="card"><h2>資本適足性</h2><div class="sw"><table id="ct"></table></div><div id="cc" style="margin-top:14px"></div><div class="note">自 115 年起資本適足率由風險資本額制度（RBC）調整為新一代清償能力制度（TIS），115 年數值與以前年度不宜直接比較。資本適足率與淨值比率只是衡量清償能力的其中兩種指標，不代表財務健全與否的唯一標準。</div></div>
+<div class="card"><h2>115 年度第 3 季指標（新制 IFRS 17）</h2><div class="sw"><table id="qt"></table></div><div class="note">自 115 年第 1 季起適用。每年申報的指標尚未公布，以「—」表示。</div></div>
+</div>
+<div id="p3" hidden>
+<div class="card"><h2>近三年業務概況（112–114 年度）</h2><div class="note" style="margin:0 0 10px">資料來源：產險業務概況表（RPT-07010801），兆豐產物；金額單位為新臺幣元。三年數字與各險別表「總計」逐項核對一致。</div>
+<div class="row"><b>呈現方式：</b><button class="btn" id="vt">表格</button><button class="btn" id="vc">折線圖</button><button class="btn" id="vb">表格＋折線圖</button></div>
+<div class="row" style="margin-top:12px"><b>選擇項目：</b><button class="btn" id="tall">全選</button><button class="btn" id="tnone">清除</button></div><div id="tchips" style="margin-top:8px"></div><div class="opts" id="topt" style="margin-top:12px"></div></div>
+<div class="card" id="tcard"><h2>同項目逐年比較</h2><div class="sw"><table id="tt"></table></div><div class="note">變動：金額項目為成長率（%）；市場占有率與自留比率為百分點差（pp）。自留比率＝自留保費 ÷ 保費收入（含再保）。112 年度保險賠款偏高，主要來自健康保險（約 64.3 億元）。</div></div>
+<div class="card" id="ccard"><h2>折線圖</h2><div class="note" style="margin:0 0 8px">金額項目以億元顯示。</div><div id="tc"></div></div>
+</div>
+</div>
+<div class="dock" id="dock1"><div class="in"><div class="msg" id="count"></div>
+<div class="row"><button class="btn pri" id="dl">下載 Word</button><button class="btn pri" id="dx">下載 Excel</button></div></div></div>
+
+<div class="dock" id="dock2" style="display:none"><div class="in"><div class="msg" id="fcount"></div><div class="row"><button class="btn pri" id="dl2">下載 Word</button><button class="btn pri" id="dx2">下載 Excel</button></div></div></div>
+<div class="dock" id="dock3" style="display:none"><div class="in"><div class="msg" id="tcount"></div><div class="row"><button class="btn pri" id="dl3">下載 Word</button><button class="btn pri" id="dx3">下載 Excel</button></div></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+const DATA=[["一年期住宅火災保險(1)",[56,56,56],[12.4,19.71,14.64],[366015223,360105487,340015093],[279791376,277557452,262844674],[4.54,4.56,4.86],[32432518,33600495,29612419],[34605501,53357568,37275352],[86223847,82548035,77170419],[30857938,30489758,27343320],[3075476,6551312,6055647],[205952969,201013003,190866459],[0,0,0],[161173685,150446391,136254988],[0,0,0],[0,0,0],[74040798,64955751,38329466]],["長期住宅火災保險(2)",[60.5,60.5,60.5],[0.28,0.55,0.4],[-79849,-94503,-50571],[-56222,-86894,-34230],[0,0,0],[11164,20262,15958],[11177,20210,14715],[-23627,-7609,-16341],[-11517,-3785,-8122],[0,0,0],[14887202,19615472,24016136],[0,0,0],[2467919,2287837,2292073],[0,0,0],[0,0,0],[57,44,96]],["一年期商業火災保險(3)",[70.2,69.1,67.2],[33.81,57.48,31.74],[989080912,898364148,770544171],[259665385,206803973,165268439],[4.21,3.4,3.05],[227650456,264587248,544671666],[84487078,115157312,51957534],[729415527,691560175,605275732],[88724210,96528773,63686269],[139551395,214864707,452147905],[373993411,363115364,323050884],[0,0,0],[50618521,29801943,18937186],[0,0,0],[0,0,0],[517960747,761051387,669752216]],["長期商業火災保險(4)",[60.5,60.5,60.5],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[27467,39922,51195],[0,0,0],[87459,87023,231053],[0,0,0],[0,0,0],[0,0,0]],["內陸運輸保險(5)",[68,68,68],[-27.54,9.59,45.3],[1814007,3206691,5802537],[1098532,1726567,3126264],[0.02,0.03,0.06],[481692,636464,780897],[-408247,196119,974099],[715475,1480124,2676273],[453104,776023,822371],[164243,198250,115206],[2184673,2692421,3430003],[0,0,0],[913937,1148564,974688],[0,0,0],[0,0,0],[3807644,5698977,6339537]],["貨物運輸保險(6)",[68,68,68],[38.68,17.58,31.88],[345719725,372251010,332454052],[109761026,106267387,97427823],[1.78,1.75,1.8],[95261995,67344649,171939349],[43760341,18394047,31219340],[235958699,265983623,235026229],[37705635,37157766,34770221],[65665271,41888149,129136683],[8662227,12133237,10088321],[0,0,0],[67677913,59191230,48506692],[0,0,0],[0,0,0],[184615630,147470212,105002656]],["船體保險(7)",[76,76,76],[21.2,63.69,41.8],[435763596,570852383,455405811],[60950043,68451865,58521307],[0.99,1.13,1.08],[108943505,104952127,81099958],[13561282,43206363,25024698],[374813553,502400518,396884504],[31603312,37007119,30498125],[89589334,73982608,64614180],[144709537,200649891,131326174],[0,0,0],[41624300,35942648,32024958],[0,0,0],[0,0,0],[180297384,197399827,145393098]],["漁船保險(8)",[70,70,70],[120.02,2.27,75.14],[269020874,277734236,314617452],[7711110,9186372,7169499],[0.13,0.15,0.13],[81392760,77668919,475854945],[9905557,211809,4704056],[261309764,268547864,307447953],[40537421,41003428,49268205],[73052609,77547295,470097927],[143567245,153992261,157535190],[0,0,0],[2238842,4548042,3452855],[550000,0,0],[0,0,0],[36568034,22677335,83844841]],["航空保險(9)",[76,76,76.7],[-34.83,2.12,171.9],[184800107,150724899,112457537],[18517294,16539134,1050425],[0.3,0.27,0.02],[18192013,11982896,32596204],[-6402895,347727,20461581],[166282813,134185765,111407112],[2219117,1691062,1489588],[15276027,7987370,19644039],[56560221,51196075,41568510],[0,0,0],[7355984,3891297,1508329],[0,0,760000],[0,0,0],[74209367,130447631,145649319]],["一般自用汽車財產損失保險(10)",[67.3,67.2,66.9],[51.28,49.43,55.88],[1897947808,2017956321,1855754293],[1609509999,1651510010,1484629016],[26.09,27.15,27.44],[1000339231,943563814,987921426],[839542090,778989014,779845147],[288437809,366446311,371125277],[66896681,87988368,120272283],[177971066,187511905,215410326],[1004433958,1069627942,1003045685],[0,0,0],[305446239,260826813,214442851],[0,0,0],[0,0,0],[355349163,346066804,319150965]],["一般商業汽車財產損失保險(11)",[65.8,66,65.7],[31.58,33.45,50.1],[67291644,74519713,70487729],[60046198,66224073,61662778],[0.97,1.09,1.14],[21406832,31771255,24936543],[19494330,21000786,27353117],[7245446,8295640,8824951],[-646937,1083283,2573530],[3165336,5489585,3820299],[38709845,40676913,38083032],[0,0,0],[10237692,7213586,4258601],[0,0,0],[0,0,0],[16404493,15053465,21289416]],["一般自用汽車責任保險(12)",[67.5,67.4,67.3],[59.44,65.96,68.08],[1488713565,1551151589,1460530178],[1257688492,1264852796,1161030230],[20.4,20.79,21.46],[885992373,888780255,848343229],[753072427,801264228,750375915],[231025073,286298793,299499948],[56620505,72036820,103430730],[192947204,163541665,178137472],[806973791,843205639,803992350],[0,0,0],[51472456,29137103,17112425],[0,0,0],[0,0,0],[1001352453,946632814,862690414]],["一般商業汽車責任保險(13)",[65.7,65.9,65.7],[55.39,57.24,55.36],[216871981,225604802,207408131],[184339949,186044491,165904821],[2.99,3.06,3.07],[111776958,102469678,93000095],[102446071,101099013,80829234],[32532032,39560311,41503310],[5537198,8697033,14566146],[24235262,18259459,18171323],[117234892,121081806,113403798],[0,0,0],[11537697,7763982,4474791],[0,0,0],[0,0,0],[147642728,132878437,110324012]],["強制自用汽車責任保險(14)",null,[52.79,72.68,59.18],[325664354,352192620,379904886],[233190941,251056702,267341608],[3.78,4.13,4.94],[220207319,302744662,251576378],[126087605,185320245,159128091],[92473413,101135918,112563278],[0,0,0],[77531972,122756751,91886629],[123985155,133985876,143610771],[23139534,-14499384,-17265673],[0,0,0],[0,0,0],[0,0,0],[196543278,234047087,223730097]],["強制商業汽車責任保險(15)",null,[73.66,94.31,98.08],[42192359,45597595,48465574],[29079673,31249946,32713425],[0.47,0.51,0.6],[37379854,51347476,50149673],[22158723,30070514,32086788],[13112686,14347649,15752149],[0,0,0],[12710432,19838465,20048686],[19371570,20990513,22328048],[-37884174,-41713594,-41814048],[0,0,0],[0,0,0],[0,0,0],[35357230,40547224,44214024]],["強制機車責任保險(16)",null,[76.99,71.58,75.05],[122104170,125696559,124740018],[91423433,93817053,92480227],[1.48,1.54,1.71],[88888438,96064941,99696133],[71034401,66594335,69247877],[30680737,31879506,32259791],[0,0,0],[22087824,28820095,29645946],[72407128,74058545,73679410],[386828601,374794441,372152022],[0,0,0],[0,0,0],[0,0,0],[92629126,82534956,85240580]],["一般責任保險(17)",[70.1,70,70.2],[38.18,53.0,30.13],[712891162,734794113,610647750],[358951519,365588443,306580239],[5.82,6.01,5.67],[319809223,207462819,190653020],[133167563,178225639,86452266],[353939643,369205670,304067511],[91091827,99932620,86622561],[163461538,106094006,91533979],[415752398,403047933,338302073],[0,0,0],[102071559,85876741,76162509],[0,0,0],[0,0,0],[542903173,564715976,455173298]],["專業責任保險(18)",[72.2,72.4,73],[9.76,2.38,38.4],[112703104,99205091,97213622],[54587917,42605150,40544319],[0.89,0.7,0.75],[9745198,3068746,13663206],[3721567,1002774,13479796],[58115187,56599941,56669303],[9037878,10150758,10604532],[6732823,610988,5540511],[80886294,62778358,59870777],[0,0,0],[19769515,20274785,16455856],[0,0,0],[0,0,0],[52081017,54098015,59218606]],["工程保險(19)",[61.3,61.3,61.7],[55.77,57.67,81.12],[1027329363,760382403,494183794],[287932284,268681874,187853385],[4.67,4.42,3.47],[195242424,318960248,244107570],[141039739,110291339,110274568],[739397079,491700529,306330409],[48049441,40916930,25927090],[118221964,206801289,185389848],[727526480,561403400,417046425],[0,0,0],[53404487,41276961,32861349],[0,0,0],[0,0,0],[890445629,550094417,455415773]],["核能保險(20)",null,[20.56,0.62,13.11],[114505637,136376011,136146792],[11765987,2436719,9113882],[0.19,0.04,0.17],[154185,227598,20041],[2117816,54648,1252941],[102739650,133939292,127032910],[869068,981576,536479],[0,0,0],[55516503,60329911,61685505],[100861822,100861822,100861822],[79970323,75850404,72298742],[0,0,0],[0,0,0],[3452567,1488936,1661886]],["保證保險(21)",[74.9,74.9,74.9],[-45.7,103.68,63.88],[15035952,15631130,14190105],[8021800,7755250,8362433],[0.13,0.13,0.15],[3634653,13873314,2489166],[-3740730,7764666,5583545],[7014152,7875880,5827672],[2157879,2107266,2423940],[2006532,6679787,557041],[7166077,7775081,6707834],[0,0,0],[4747283,3340646,4581669],[0,0,0],[0,0,0],[46457748,56333047,57100234]],["信用保險(22)",[80.2,80.1,80.1],[-266.89,-131.14,-100.1],[40102467,53475562,32975479],[-1931024,4243983,8104758],[-0.03,0.07,0.15],[-4821232,-6596750,-5749112],[-7326254,-5864506,-5783178],[42033491,49231579,24870721],[7022415,8855250,4491310],[0,0,1414551],[18576299,8020863,8381945],[0,0,0],[1921172,2684249,3203475],[0,0,0],[0,0,0],[2540599,5045621,4313377]],["其他財產保險(23)",[66.3,66.3,68.1],[64.31,81.59,52.53],[98248013,90509947,65084219],[72442673,63208523,43016972],[1.18,1.04,0.8],[51907765,49177051,122175291],[51046372,60465539,44033787],[25805340,27301424,22067247],[7901755,7628025,5119409],[4201228,2237650,52063911],[29806657,38141057,48349801],[0,0,0],[10125343,8034136,12964620],[0,0,0],[0,0,0],[177862724,171317884,157069735]],["傷害保險(24)",null,[41.11,36.78,39.78],[1163832612,784411965,756157721],[408662850,384731639,289193636],[6.63,6.32,5.35],[355850748,413724411,436688245],[169970970,138644466,112380176],[755169762,399680326,466964085],[120969296,68825895,76830896],[242315949,293642371,317880662],[261053277,271254061,262235843],[0,0,0],[1193739291,727757441,547157732],[0,0,0],[0,0,0],[599098627,268990102,233462120]],["商業性地震保險(25)",[70.6,67.2,67],[78.75,142.46,-3.55],[641713938,612371774,531124375],[216848015,161920177,181999631],[3.52,2.66,3.36],[536797541,268486836,22276205],[170303048,219163860,-6511250],[424865923,450451597,349124744],[38838468,36175939,23802811],[449395379,88870979,9933711],[243211827,249325925,208455226],[0,0,25669748],[583043473,584093659,646055949],[0,0,0],[0,0,0],[799160110,637043685,32448946]],["個人綜合保險(26)",[68.3,68.3,68.3],[11.98,9.9,33.61],[35068960,26108348,15535489],[30769830,22520047,13042696],[0.5,0.37,0.24],[3724283,4762868,5734898],[3375106,1968849,2992651],[4299130,3588301,2492793],[1387983,1223119,651862],[1532206,1481961,2783129],[12182949,9604221,6231170],[0,0,0],[5029320,2897766,1352362],[0,0,0],[0,0,0],[3977950,2571992,3966157]],["商業綜合保險(27)",[65.3,65.3,65.3],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[966,966,966],[0,0,0],[0,0,0],[0,0,0]],["颱風洪水保險(28)",[70.6,66.8,65.5],[21.05,44.49,64.31],[668295670,656242634,549733573],[193372965,173706064,169503239],[3.14,2.86,3.13],[83531551,140770303,257617027],[42767962,74470665,104013748],[474922705,482536570,380230334],[56656350,56317328,37062576],[56456933,139209107,160573191],[278610541,289104988,235169352],[0,0,24429305],[729866289,658122630,612914957],[0,0,0],[0,0,0],[210629470,210666692,164232331]],["政策性地震保險(29)",null,[1.86,69.72,0.26],[565372921,545642367,507456274],[69991036,61692379,51304299],[1.14,1.01,0.95],[1483633,122782873,128282],[1262596,37500300,128282],[495381885,483949988,456151975],[0,0,0],[22500,85620000,0],[283139607,271964113,253722906],[168895725,168895725,168895725],[454179879,401815358,387545342],[0,0,0],[0,0,0],[138890,337427,0]],["健康保險(30)",[66.9,66.3,64.2],[-60.59,36.16,2305.94],[92456272,70183234,53439959],[65922251,47083325,32286884],[1.07,0.77,0.6],[26262003,113612169,6433941122],[-39027727,16325186,1680233161],[26534021,23099909,21153075],[9799881,8856390,7492668],[8278424,50395882,3127963750],[27156550,24585485,22310167],[0,0,0],[25603294,11817233,6927500],[0,0,0],[0,0,0],[8489205,70944651,161052130]],["國外再保分進業務(31)",null,[87.43,85.94,79.99],[183906085,244620240,207304498],[183906085,244620240,207304498],[2.98,4.02,3.84],[156278994,121178876,128433964],[172815272,241980344,214213974],[0,0,0],[0,0,0],[0,0,0],[80195033,93961085,130920029],[0,0,0],[29136497,22266074,13841425],[0,0,0],[0,0,0],[417812134,401275856,280483149]],["強制微型電動二輪車責任保險(43)",null,[76.08,76.12,66.3],[1450933,1076594,768921],[1323118,917802,746352],[0.02,0.02,0.01],[467578,277094,17371],[765863,515528,132847],[127815,158792,22569],[0,0,0],[0,150,0],[1256305,918316,571122],[169753,57182,48705],[0,0,0],[0,0,0],[0,0,0],[724994,382297,122796]],["總計(99)",null,[47.8,56.38,83.88],[12225833565,11856894963,10550499462],[6165284535,6082912542,5410093529],[100,100,100],[4670425655,4749303597,11544391169],[2955614604,3297738587,4433374858],[6060549030,5773982421,5140405933],[754278908,756426744,730278800],[1949648927,1950881786,5654566552],[5655698088,5660289679,5140036141],[642011261,588396192,632977606],[4005461335,3238395508,2918795943],[550000,0,760000],[0,0,0],[6672552969,6122768549,4926671275]]];
+const YEARS=["114","113","112"];
+const GROUPS=[
+{id:"ret",name:"保費與自留",rows:[["保費收入(含再保)",3,"n"],["自留保費",4,"n"],["自留比率","NEW","p"]]},
+{id:"clm",name:"賠款",rows:[["保險賠款(含再保)",6,"n"],["自留賠款",7,"n"]]},
+{id:"re",name:"再保",rows:[["再保保費支出",8,"n"],["再保佣金收入",9,"n"],["攤回再保賠款與給付",10,"n"]]},
+{id:"rs",name:"準備金",rows:[["未滿期保費準備金",11,"n"],["特別準備金－負債項下",12,"n"],["特別準備金－業主權益項下",13,"n"],["保費不足準備金",14,"n"],["負債適足準備金",15,"n"],["賠款準備金",16,"n"]]},
+{id:"lr",name:"損失率",rows:[["預期損失率",1,"o"],["實際損失率",2,"o"]]}];
+const sel=new Set([0,2,DATA.length-1]), yrs=new Set([0,1,2]), grp=new Set(GROUPS.map(g=>g.id)), opt={f:1,z:1,c:1};
+const lab=r=>r[1]==="NEW"&&opt.f?"自留比率＝自留保費 ÷ 保費收入(含再保)":r[0];
+const rowsFor=(d,Y)=>GROUPS.filter(g=>grp.has(g.id)).flatMap(g=>g.rows).filter(r=>opt.z||Y.some(y=>{const v=val(d,r[1],y);return v!=null&&v!==0}));
+const $=id=>document.getElementById(id);
+function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function val(d,i,y){if(i==="NEW"){const p=d[3][y];return p?d[4][y]/p:null}const v=d[i];return v?v[y]:null}
+function fmt(v,k){if(v==null)return"—";if(k==="p")return(v*100).toFixed(1)+"%";if(k==="o")return v.toFixed(2)+"%";return v<0?"-"+Math.abs(v).toLocaleString("en-US"):v.toLocaleString("en-US")}
+const yl=()=>[...yrs].sort().map(i=>i);
+function chipsRender(){const f=$("q").value.trim();$("chips").replaceChildren();
+DATA.forEach((d,i)=>{if(f&&!d[0].includes(f))return;const l=el("label","chip"+(sel.has(i)?" on":""));
+const c=document.createElement("input");c.type="checkbox";c.checked=sel.has(i);
+c.onchange=()=>{c.checked?sel.add(i):sel.delete(i);render()};l.append(c,el("span",null,d[0]));$("chips").append(l)})}
+function opts(){const y=$("years");y.replaceChildren(el("b",null,"年度："));
+YEARS.forEach((n,i)=>{const l=el("label");const c=document.createElement("input");c.type="checkbox";c.checked=yrs.has(i);c.onchange=()=>{c.checked?yrs.add(i):yrs.delete(i);render()};l.append(c,el("span",null,n+"年度"));y.append(l)});
+const g=$("groups");g.replaceChildren(el("b",null,"項目："));
+GROUPS.forEach(o=>{const l=el("label");const c=document.createElement("input");c.type="checkbox";c.checked=grp.has(o.id);c.onchange=()=>{c.checked?grp.add(o.id):grp.delete(o.id);render()};l.append(c,el("span",null,o.name));g.append(l)});
+const x=$("extra");x.replaceChildren(el("b",null,"選項："));[["f","顯示公式"],["z","顯示 0 元項目"]].forEach(([k,n])=>{const l=el("label"),c=document.createElement("input");c.type="checkbox";c.checked=!!opt[k];c.onchange=()=>{opt[k]=c.checked?1:0;render()};l.append(c,el("span",null,n));x.append(l)})}
+const ys=()=>[...yrs].sort();
+function cell(tr,t,k){const td=el("td",null,t);if(t.startsWith("-"))td.className="neg";tr.append(td)}
+function render(){chipsRender();const Y=ys(),S=[...sel].sort((a,b)=>a-b);
+$("count").textContent="已選 "+S.length+" 個險別、"+Y.length+" 個年度";$("dl").disabled=$("dx").disabled=!S.length||!Y.length;
+const ov=$("ov");ov.replaceChildren();let h=el("tr");h.append(el("th",null,"險別"));Y.forEach(y=>h.append(el("th",null,YEARS[y]+"年")));ov.append(h);
+const mx=Math.max(1,...S.map(i=>val(DATA[i],"NEW",Y[0])||0));
+S.filter(i=>opt.z||Y.some(y=>(val(DATA[i],"NEW",y)||0)!==0)).forEach(i=>{const d=DATA[i],tr=el("tr");tr.append(el("td",null,d[0]));
+Y.forEach((y,j)=>{const v=val(d,"NEW",y),td=el("td",null,fmt(v,"p"));if(v!=null&&v<0)td.className="neg";
+tr.append(td)});ov.append(tr)});
+charts();const D=$("detail");D.replaceChildren();
+S.forEach(i=>{const d=DATA[i],c=el("div","card");c.append(el("div","tname",d[0]));const w=el("div","sw"),t=document.createElement("table");
+let hr=el("tr");hr.append(el("th",null,"項目"));Y.forEach(y=>hr.append(el("th",null,YEARS[y]+"年度")));t.append(hr);
+const RW=rowsFor(d,Y);RW.forEach(r=>{const tr=el("tr",r[1]==="NEW"?"new":"");tr.append(el("td",null,lab(r)));Y.forEach(y=>cell(tr,fmt(val(d,r[1],y),r[2])));t.append(tr)});if(!RW.length){const tr=el("tr");tr.append(el("td",null,"（所選項目皆為 0，已隱藏）"));t.append(tr)}
+w.append(t);c.append(w);D.append(c)})}
+const cm=new Set(["NEW"]),PAL=["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd","#8c564b","#e377c2","#7f7f7f","#bcbd22","#17becf"];let cmBuilt=0;
+function fk(v,k){if(v==null)return"";if(k==="p")return(v*100).toFixed(0)+"%";if(k==="o")return v.toFixed(0)+"%";const a=Math.abs(v),s=v<0?"-":"";return a>=1e8?s+(a/1e8).toFixed(1)+"億":a>=1e4?s+(a/1e4).toFixed(0)+"萬":s+a}
+function svgEl(t,a){const e=document.createElementNS("http://www.w3.org/2000/svg",t);for(const k in a)e.setAttribute(k,a[k]);return e}
+function charts(){const S=[...sel].sort((a,b)=>a-b),Y=ys();
+if(!cmBuilt){cmBuilt=1;ALLR.forEach(r=>{const l=el("label","chip"+(cm.has(r[1])?" on":"")),c=document.createElement("input");c.type="checkbox";c.checked=cm.has(r[1]);c.onchange=()=>{c.checked?cm.add(r[1]):cm.delete(r[1]);l.classList.toggle("on",c.checked);charts()};l.append(c,el("span",null,r[0]));$("cm").append(l)})}
+const cg=$("cg");cg.replaceChildren();const Yc=[...Y].reverse();
+if(!S.length||!Yc.length){cg.append(el("div","note","請先選擇險別與年度"));return}
+if(!cm.size)cg.append(el("div","note","尚未勾選圖表項目"));
+ALLR.filter(r=>cm.has(r[1])).forEach(r=>cg.append(lineChart(r,S,Yc)))}
+function lineChart(r,S,Yc){const W=640,Ht=300,L=58,R=14,T=14,B=30,w=el("div");w.style.marginBottom="18px";w.append(el("div","tname",r[0]+(r[2]==="n"?"（元）":"（%）")));
+const vals=[];S.forEach(i=>Yc.forEach(y=>{const v=val(DATA[i],r[1],y);if(v!=null)vals.push(v)}));
+if(!vals.length){w.append(el("div","note","所選險別沒有資料"));return w}
+const svg=svgEl("svg",{viewBox:"0 0 "+W+" "+Ht,width:"100%"});svg.style.display="block";
+let lo=Math.min(...vals),hi=Math.max(...vals);if(lo>0)lo=0;if(hi<0)hi=0;if(hi===lo)hi=lo+1;const pad=(hi-lo)*.06;if(hi>0)hi+=pad;if(lo<0)lo-=pad;
+const px=j=>Yc.length===1?L+(W-L-R)/2:L+(W-L-R)*j/(Yc.length-1),py=v=>T+(Ht-T-B)*(1-(v-lo)/(hi-lo));
+for(let k=0;k<=4;k++){const v=lo+(hi-lo)*k/4,y=py(v);svg.append(svgEl("line",{x1:L,x2:W-R,y1:y,y2:y,style:"stroke:var(--line)"}));const t=svgEl("text",{x:L-6,y:y+4,"text-anchor":"end","font-size":11,style:"fill:var(--mut)"});t.textContent=fk(v,r[2]);svg.append(t)}
+Yc.forEach((y,j)=>{const t=svgEl("text",{x:px(j),y:Ht-8,"text-anchor":"middle","font-size":12,style:"fill:var(--mut)"});t.textContent=YEARS[y]+"年";svg.append(t)});
+const leg=el("div","row");leg.style.cssText="gap:4px 12px;margin-top:6px;font-size:12px";
+S.forEach((i,n)=>{const col=PAL[n%PAL.length];let d="",first=1;Yc.forEach((y,j)=>{const v=val(DATA[i],r[1],y);if(v==null){first=1;return}d+=(first?"M":"L")+px(j)+","+py(v);first=0});
+svg.append(svgEl("path",{d,fill:"none",stroke:col,"stroke-width":2.2,"stroke-linejoin":"round"}));
+Yc.forEach((y,j)=>{const v=val(DATA[i],r[1],y);if(v!=null){const c=svgEl("circle",{cx:px(j),cy:py(v),r:3.6,fill:col}),tt=svgEl("title",{});tt.textContent=DATA[i][0]+" "+YEARS[y]+"年："+fmt(v,r[2]);c.append(tt);svg.append(c)}});
+const li=el("span"),sw=el("span");li.style.cssText="display:inline-flex;align-items:center;gap:5px";sw.style.cssText="width:12px;height:3px;background:"+col+";display:inline-block";li.append(sw,document.createTextNode(DATA[i][0]));leg.append(li)});
+w.append(svg,leg);return w}
+const OV={share:3.03,prem:12225833565,ret:6165284535,claim:4670425655,rclaim:2955614604,reins:6060549030};
+const yi=v=>(v/1e8).toFixed(2)+" 億";
+function ovList(){return[["市場占有率",OV.share.toFixed(2)+"%",""],["保費收入（含再保）",yi(OV.prem),fmt(OV.prem,"n")+" 元"],["自留保費",yi(OV.ret),fmt(OV.ret,"n")+" 元"],["自留比率",(OV.ret/OV.prem*100).toFixed(1)+"%","自留保費 ÷ 保費收入"],["保險賠款（含再保）",yi(OV.claim),fmt(OV.claim,"n")+" 元"],["自留賠款",yi(OV.rclaim),fmt(OV.rclaim,"n")+" 元"],["再保費支出",yi(OV.reins),fmt(OV.reins,"n")+" 元"]]}
+ovList().forEach(([a,v,s])=>{const d=el("div","kpi");d.append(el("div","kl",a),el("div","kv",v),el("div","ks",s));$("kpi").append(d)});
+function ovWord(){const w=[5000,4638],r=ovList().map(a=>tr([tc(a[0],w[0]),tc(a[1]+(a[2]&&a[2].endsWith("元")?"（"+a[2]+"）":""),w[1],{al:"right"})]));
+return para("114年度整體概況",{st:"Heading1",b:1,s:28,c:"1F3864",keep:1,bf:60})+tbl(w,[tr([tc("項目",w[0],{sh:"1F3864",c:"FFFFFF",b:1}),tc("數值",w[1],{sh:"1F3864",c:"FFFFFF",b:1,al:"right"})],1),...r])+para("資料來源：產險業務概況表（RPT-07010801）",{s:16,c:"6B7488",bf:60,af:160})}
+function ovSheet(){const A=[["項目","數值","說明"],["市場占有率(%)",OV.share,""],["保費收入（含再保）",OV.prem,"元"],["自留保費",OV.ret,"元"],["自留比率",OV.ret/OV.prem,"自留保費 ÷ 保費收入"],["保險賠款（含再保）",OV.claim,"元"],["自留賠款",OV.rclaim,"元"],["再保費支出",OV.reins,"元"]];
+const s=XLSX.utils.aoa_to_sheet(A);for(let r=1;r<A.length;r++){const c=s[XLSX.utils.encode_cell({r,c:1})];c.z=r===1?"0.00":r===4?"0.0%":"#,##0"}
+if(opt.f)s["B5"].f="B4/B3";s["!cols"]=[{wch:24},{wch:20},{wch:24}];return s}
+$("q").oninput=chipsRender;
+$("all").onclick=()=>{DATA.forEach((_,i)=>sel.add(i));render()};
+$("none").onclick=()=>{sel.clear();render()};
+/* ---------- Word (.docx) ---------- */
+const X=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const FONT='<w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:eastAsia="微軟正黑體" w:cs="Arial"/>';
+function run(t,o={}){return'<w:r><w:rPr>'+FONT+(o.b?'<w:b/>':'')+(o.c?'<w:color w:val="'+o.c+'"/>':'')+'<w:sz w:val="'+(o.s||20)+'"/></w:rPr><w:t xml:space="preserve">'+X(t)+'</w:t></w:r>'}
+function para(t,o={}){return'<w:p><w:pPr>'+(o.st?'<w:pStyle w:val="'+o.st+'"/>':'')+(o.keep?'<w:keepNext/>':'')+'<w:spacing w:before="'+(o.bf||0)+'" w:after="'+(o.af||80)+'"/>'+(o.al?'<w:jc w:val="'+o.al+'"/>':'')+'</w:pPr>'+run(t,o)+'</w:p>'}
+function tc(t,w,o={}){return'<w:tc><w:tcPr><w:tcW w:w="'+w+'" w:type="dxa"/>'+(o.sh?'<w:shd w:val="clear" w:color="auto" w:fill="'+o.sh+'"/>':'')+'<w:vAlign w:val="center"/></w:tcPr>'+para(t,{b:o.b,c:o.c,s:o.s||18,al:o.al,af:0})+'</w:tc>'}
+function tbl(widths,rows){const bd=['top','left','bottom','right','insideH','insideV'].map(k=>'<w:'+k+' w:val="single" w:sz="4" w:space="0" w:color="BFC8D9"/>').join('');
+return'<w:tbl><w:tblPr><w:tblW w:w="'+widths.reduce((a,b)=>a+b)+'" w:type="dxa"/><w:tblBorders>'+bd+'</w:tblBorders><w:tblLayout w:type="fixed"/><w:tblCellMar><w:top w:w="50" w:type="dxa"/><w:left w:w="90" w:type="dxa"/><w:bottom w:w="50" w:type="dxa"/><w:right w:w="90" w:type="dxa"/></w:tblCellMar></w:tblPr><w:tblGrid>'+widths.map(w=>'<w:gridCol w:w="'+w+'"/>').join('')+'</w:tblGrid>'+rows.join('')+'</w:tbl>'}
+function tr(cells,hdr){return'<w:tr><w:trPr><w:cantSplit/>'+(hdr?'<w:tblHeader/>':'')+'</w:trPr>'+cells.join('')+'</w:tr>'}
+function body(){if(curTab===2)return fbody();if(curTab===3)return tbody();const Y=ys(),S=[...sel].sort((a,b)=>a-b),W=9638,fw=Y.length>2?3400:4200,yw=Math.floor((W-fw)/Y.length),ws=[fw,...Y.map(()=>yw)];
+let x=para("兆豐產物保險　各險別資料",{st:"Title",s:40,b:1,c:"1F3864",af:60});
+x+=para("資料來源：金融監督管理委員會保險局「保險業公開資訊觀測站」　金額單位：新臺幣元",{s:18,c:"6B7488",af:40});
+x+=para("年度："+Y.map(y=>YEARS[y]).join("、")+"　　險別數："+S.length,{s:18,c:"6B7488",af:200});
+x+=ovWord()+para("一、自留比率總覽",{st:"Heading1",b:1,s:28,c:"1F3864",keep:1,bf:120});
+x+=tbl(ws,[tr([tc("險別",fw,{sh:"1F3864",c:"FFFFFF",b:1}),...Y.map(y=>tc(YEARS[y]+"年度",yw,{sh:"1F3864",c:"FFFFFF",b:1,al:"right"}))],1),
+...S.filter(i=>opt.z||Y.some(y=>(val(DATA[i],"NEW",y)||0)!==0)).map(i=>tr([tc(DATA[i][0],fw),...Y.map(y=>tc(fmt(val(DATA[i],"NEW",y),"p"),yw,{al:"right"}))]))]);
+x+=para("自留比率＝自留保費 ÷ 該險別保費收入（含再保）。",{s:16,c:"6B7488",bf:60,af:120});
+if(S.length&&GROUPS.some(g=>grp.has(g.id))){x+=para("二、各險別明細",{st:"Heading1",b:1,s:28,c:"1F3864",keep:1,bf:200});
+S.forEach(i=>{const d=DATA[i];x+=para(d[0],{st:"Heading2",b:1,s:24,c:"1F4E9C",keep:1,bf:160,af:60});
+const rows=[tr([tc("項目",fw,{sh:"E8EFFB",b:1}),...Y.map(y=>tc(YEARS[y]+"年度",yw,{sh:"E8EFFB",b:1,al:"right"}))],1)];
+rowsFor(d,Y).forEach(r=>{const hi=r[1]==="NEW";rows.push(tr([tc(lab(r),fw,{sh:hi?"FFF4D6":null,b:hi}),...Y.map(y=>{const t=fmt(val(d,r[1],y),r[2]);return tc(t,yw,{al:"right",sh:hi?"FFF4D6":null,b:hi,c:t.startsWith("-")?"C0392B":null})})]))});if(rows.length===1)rows.push(tr([tc("（所選項目皆為 0，已隱藏）",fw),...Y.map(()=>tc("",yw))]));
+x+=tbl(ws,rows)})}
+return x}
+const STY='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr>'+FONT+'<w:sz w:val="20"/><w:lang w:val="en-US" w:eastAsia="zh-TW"/></w:rPr></w:rPrDefault></w:docDefaults><w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/></w:style><w:style w:type="paragraph" w:styleId="Title"><w:name w:val="Title"/><w:basedOn w:val="Normal"/></w:style><w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:basedOn w:val="Normal"/><w:pPr><w:outlineLvl w:val="0"/></w:pPr></w:style><w:style w:type="paragraph" w:styleId="Heading2"><w:name w:val="heading 2"/><w:basedOn w:val="Normal"/><w:pPr><w:outlineLvl w:val="1"/></w:pPr></w:style></w:styles>';
+const FOOT='<w:ftr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="16"/><w:color w:val="6B7488"/></w:rPr><w:t xml:space="preserve">第 </w:t></w:r><w:r><w:rPr><w:sz w:val="16"/></w:rPr><w:fldChar w:fldCharType="begin"/></w:r><w:r><w:rPr><w:sz w:val="16"/></w:rPr><w:instrText>PAGE</w:instrText></w:r><w:r><w:rPr><w:sz w:val="16"/></w:rPr><w:fldChar w:fldCharType="end"/></w:r><w:r><w:rPr><w:sz w:val="16"/><w:color w:val="6B7488"/></w:rPr><w:t xml:space="preserve"> 頁</w:t></w:r></w:p></w:ftr>';
+async function makeDocx(){const z=new JSZip(),H='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
+z.file("[Content_Types].xml",H+'<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/><Override PartName="/word/footer1.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml"/></Types>');
+z.file("_rels/.rels",H+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>');
+z.file("word/_rels/document.xml.rels",H+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/footer" Target="footer1.xml"/></Relationships>');
+z.file("word/styles.xml",STY);z.file("word/footer1.xml",H+FOOT);
+z.file("word/document.xml",H+'<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><w:body>'+body()+'<w:sectPr><w:footerReference w:type="default" r:id="rId2"/><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134" w:header="567" w:footer="567" w:gutter="0"/></w:sectPr></w:body></w:document>');
+return z.generateAsync({type:"blob"})}
+let dls=null;
+$("dl").onclick=async()=>{if(!dls){alert("目前環境不支援下載，請用 Claude 內開啟此頁面。");return}
+const b=$("dl");b.disabled=true;b.textContent="產生中…";
+try{await dls.save({filename:"兆豐產物_各險別資料.docx",data:await makeDocx()})}catch(e){if(!e||e.code!=="declined")alert("下載未完成："+((e&&e.message)||e))}
+b.textContent="下載 Word";b.disabled=false}
+const MIME="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+const ALLR=GROUPS.flatMap(g=>g.rows),cfg={m:new Set(["NEW"]),t:new Set()};
+async function makeXlsx(){const Y=ys(),S=[...sel].sort((a,b)=>a-b),A=[["險別","項目",...Y.map(y=>YEARS[y]+"年度"),"單位"]],K=[null];
+const FM=[];S.forEach(i=>{const d=DATA[i];let pr=-1,rt=-1;rowsFor(d,Y).forEach(r=>{const n=A.length;if(r[1]===3)pr=n;if(r[1]===4)rt=n;if(r[1]==="NEW"&&pr>=0&&rt>=0)FM.push([n,pr,rt]);A.push([d[0],r[0],...Y.map(y=>val(d,r[1],y)),r[2]==="n"?"元":"%"]);K.push(r[2])})});
+const ws=XLSX.utils.aoa_to_sheet(A),Z={n:"#,##0;-#,##0;0",p:"0.0%",o:"0.00"};
+if(opt.f)FM.forEach(([n,pr,rt])=>Y.forEach((_,j)=>{const L=XLSX.utils.encode_col(2+j),c=ws[XLSX.utils.encode_cell({r:n,c:2+j})];if(c&&typeof c.v==="number")c.f="IF("+L+(pr+1)+"=0,0,"+L+(rt+1)+"/"+L+(pr+1)+")"}));
+for(let r=1;r<A.length;r++)Y.forEach((_,j)=>{const c=ws[XLSX.utils.encode_cell({r,c:2+j})];if(c&&typeof c.v==="number")c.z=Z[K[r]]});
+ws["!cols"]=[{wch:30},{wch:30},...Y.map(()=>({wch:18})),{wch:6}];ws["!autofilter"]={ref:XLSX.utils.encode_range({s:{r:0,c:0},e:{r:A.length-1,c:Y.length+2}})};
+const O=[["險別",...Y.map(y=>YEARS[y]+"年度")]];S.filter(i=>opt.z||Y.some(y=>(val(DATA[i],"NEW",y)||0)!==0)).forEach(i=>O.push([DATA[i][0],...Y.map(y=>val(DATA[i],"NEW",y))]));
+const w2=XLSX.utils.aoa_to_sheet(O);for(let r=1;r<O.length;r++)Y.forEach((_,j)=>{const c=w2[XLSX.utils.encode_cell({r,c:1+j})];if(c&&typeof c.v==="number")c.z="0.0%"});w2["!cols"]=[{wch:30},...Y.map(()=>({wch:12}))];
+const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"各險別資料");XLSX.utils.book_append_sheet(wb,w2,"自留比率總覽");
+const CT=[...cfg.t].sort((a,b)=>a-b),CM=ALLR.filter(r=>cfg.m.has(r[1])),Yc=[...Y].reverse(),blocks=[];
+if(CM.length&&CT.length&&Yc.length){const G=[];CM.forEach(r=>{const top=G.length;G.push([r[0]+"（"+(r[2]==="n"?"元":"%")+"）"]);G.push(["險別",...Yc.map(y=>YEARS[y]+"年")]);CT.forEach(i=>G.push([DATA[i][0],...Yc.map(y=>val(DATA[i],r[1],y))]));
+blocks.push({r,top,n:CT.length});const pad=Math.max(0,CT.length+3<22?22-CT.length-3:0)+1;for(let k=0;k<pad;k++)G.push([])});
+const wg=XLSX.utils.aoa_to_sheet(G);blocks.forEach(b=>{for(let k=0;k<b.n;k++)Yc.forEach((_,j)=>{const c=wg[XLSX.utils.encode_cell({r:b.top+2+k,c:1+j})];if(c&&typeof c.v==="number")c.z=Z[b.r[2]]})});
+wg["!cols"]=[{wch:30},...Yc.map(()=>({wch:16}))];XLSX.utils.book_append_sheet(wb,wg,"圖表資料")}
+XLSX.utils.book_append_sheet(wb,ovSheet(),"114年度整體概況");const arr=XLSX.write(wb,{bookType:"xlsx",type:"array"});
+return blocks.length?await addCharts(arr,blocks,Yc.length,CT):new Blob([arr],{type:MIME})}
+async function addCharts(arr,blocks,ny,CT){const z=await JSZip.loadAsync(arr),H='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>',R="http://schemas.openxmlformats.org/officeDocument/2006/relationships",
+NS='xmlns:c="http://schemas.openxmlformats.org/drawingml/2006/chart" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="'+R+'"',SN="'圖表資料'!",
+PAL=["1F77B4","FF7F0E","2CA02C","D62728","9467BD","8C564B","E377C2","7F7F7F","BCBD22","17BECF"],FMT={n:"#,##0",p:"0%",o:"0.00"};
+const RL=(items)=>H+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+items.map(([id,ty,t])=>'<Relationship Id="'+id+'" Type="'+R+'/'+ty+'" Target="'+t+'"/>').join("")+'</Relationships>';
+let anchors="",dr=[],ct="";
+blocks.forEach((b,k)=>{const LC="BCDEFG"[(b.ny||ny)-1];const hdr=b.top+2,ser=CT.map((ti,t)=>{const rw=b.top+3+t,col=PAL[t%10];
+return'<c:ser><c:idx val="'+t+'"/><c:order val="'+t+'"/><c:tx><c:strRef><c:f>'+SN+'$A$'+rw+'</c:f></c:strRef></c:tx><c:spPr><a:ln w="28575" cap="rnd"><a:solidFill><a:srgbClr val="'+col+'"/></a:solidFill><a:round/></a:ln></c:spPr><c:marker><c:symbol val="circle"/><c:size val="6"/><c:spPr><a:solidFill><a:srgbClr val="'+col+'"/></a:solidFill></c:spPr></c:marker><c:cat><c:strRef><c:f>'+SN+'$B$'+hdr+':$'+LC+'$'+hdr+'</c:f></c:strRef></c:cat><c:val><c:numRef><c:f>'+SN+'$B$'+rw+':$'+LC+'$'+rw+'</c:f></c:numRef></c:val><c:smooth val="0"/></c:ser>'}).join("");
+z.file("xl/charts/chart"+(k+1)+".xml",H+'<c:chartSpace '+NS+'><c:chart><c:title><c:tx><c:rich><a:bodyPr/><a:p><a:r><a:t>'+X(b.r[0])+'</a:t></a:r></a:p></c:rich></c:tx><c:overlay val="0"/></c:title><c:autoTitleDeleted val="0"/><c:plotArea><c:layout/><c:lineChart><c:grouping val="standard"/><c:varyColors val="0"/>'+ser+'<c:marker val="1"/><c:axId val="111"/><c:axId val="222"/></c:lineChart><c:catAx><c:axId val="111"/><c:scaling><c:orientation val="minMax"/></c:scaling><c:delete val="0"/><c:axPos val="b"/><c:numFmt formatCode="General" sourceLinked="0"/><c:majorTickMark val="out"/><c:minorTickMark val="none"/><c:tickLblPos val="low"/><c:crossAx val="222"/><c:crosses val="autoZero"/><c:auto val="1"/><c:lblAlgn val="ctr"/><c:lblOffset val="100"/><c:noMultiLvlLbl val="0"/></c:catAx><c:valAx><c:axId val="222"/><c:scaling><c:orientation val="minMax"/></c:scaling><c:delete val="0"/><c:axPos val="l"/><c:majorGridlines/><c:numFmt formatCode="'+FMT[b.r[2]]+'" sourceLinked="0"/><c:majorTickMark val="out"/><c:minorTickMark val="none"/><c:tickLblPos val="nextTo"/><c:crossAx val="111"/><c:crosses val="autoZero"/><c:crossBetween val="between"/></c:valAx></c:plotArea><c:legend><c:legendPos val="b"/><c:overlay val="0"/></c:legend><c:plotVisOnly val="1"/><c:dispBlanksAs val="gap"/></c:chart></c:chartSpace>');
+const c0=(b.ny||ny)+2;anchors+='<xdr:twoCellAnchor><xdr:from><xdr:col>'+c0+'</xdr:col><xdr:colOff>0</xdr:colOff><xdr:row>'+b.top+'</xdr:row><xdr:rowOff>0</xdr:rowOff></xdr:from><xdr:to><xdr:col>'+(c0+9)+'</xdr:col><xdr:colOff>0</xdr:colOff><xdr:row>'+(b.top+Math.max(20,b.n+3))+'</xdr:row><xdr:rowOff>0</xdr:rowOff></xdr:to><xdr:graphicFrame macro=""><xdr:nvGraphicFramePr><xdr:cNvPr id="'+(k+2)+'" name="Chart '+(k+1)+'"/><xdr:cNvGraphicFramePr/></xdr:nvGraphicFramePr><xdr:xfrm><a:off x="0" y="0"/><a:ext cx="0" cy="0"/></xdr:xfrm><a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/chart"><c:chart r:id="rId'+(k+1)+'"/></a:graphicData></a:graphic></xdr:graphicFrame><xdr:clientData/></xdr:twoCellAnchor>';
+dr.push(["rId"+(k+1),"chart","../charts/chart"+(k+1)+".xml"]);ct+='<Override PartName="/xl/charts/chart'+(k+1)+'.xml" ContentType="application/vnd.openxmlformats-officedocument.drawingml.chart+xml"/>'});
+z.file("xl/drawings/drawing1.xml",H+'<xdr:wsDr xmlns:xdr="http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing" '+NS+'>'+anchors+'</xdr:wsDr>');
+z.file("xl/drawings/_rels/drawing1.xml.rels",RL(dr));z.file("xl/worksheets/_rels/sheet3.xml.rels",RL([["rId1","drawing","../drawings/drawing1.xml"]]));
+let s=await z.file("xl/worksheets/sheet3.xml").async("string");s=s.replace("</worksheet>",'<drawing xmlns:r="'+R+'" r:id="rId1"/></worksheet>');z.file("xl/worksheets/sheet3.xml",s);
+let c=await z.file("[Content_Types].xml").async("string");c=c.replace("</Types>",'<Override PartName="/xl/drawings/drawing1.xml" ContentType="application/vnd.openxmlformats-officedocument.drawing+xml"/>'+ct+'</Types>');z.file("[Content_Types].xml",c);
+return z.generateAsync({type:"blob",mimeType:MIME})}
+let cnt=()=>{};
+function mk(set,key,text){const l=el("label","chip"+(set.has(key)?" on":"")),c=document.createElement("input");c.type="checkbox";c.checked=set.has(key);c.onchange=()=>{c.checked?set.add(key):set.delete(key);l.classList.toggle("on",c.checked);cnt()};l.append(c,el("span",null,text));return l}
+function openModal(){cfg.t=new Set(sel);const ov=el("div","ov"),m=el("div","mod"),bd=el("div","bd"),info=el("div","note");
+cnt=()=>{info.textContent="將附 "+(cfg.t.size?cfg.m.size:0)+" 張折線圖，每張 "+cfg.t.size+" 條線"};
+m.append(el("div","hd","Excel 下載設定"));
+bd.append(el("div","note","勾選要畫成折線圖的項目：每個項目一張圖，橫軸為年度，每條線代表一個險別。都不勾則不附圖表。"));
+bd.append(el("h3",null,"圖表項目"));
+GROUPS.forEach(g=>{const w=el("div");w.append(el("div","note",g.name));const gr=el("div","chips");gr.style.maxHeight="none";g.rows.forEach(r=>gr.append(mk(cfg.m,r[1],r[0])));w.append(gr);bd.append(w)});
+const h=el("h3",null,"線條（險別）"),tb=el("div","row"),tg=el("div","chips");tg.style.maxHeight="220px";
+const fill=()=>{tg.replaceChildren();DATA.forEach((d,i)=>tg.append(mk(cfg.t,i,d[0])));cnt()};
+const b1=el("button","btn","全選"),b2=el("button","btn","清除");b1.onclick=()=>{DATA.forEach((_,i)=>cfg.t.add(i));fill()};b2.onclick=()=>{cfg.t.clear();fill()};
+tb.append(b1,b2);bd.append(h,tb,tg,el("div","note","提醒：「總計」金額遠大於各險別，與其他險別同圖時，其他線會變得很平，建議分開畫。"),info);
+const ft=el("div","ft"),cc=el("button","btn","取消"),ok=el("button","btn pri","下載 Excel");cc.onclick=()=>ov.remove();ok.onclick=()=>{ov.remove();doX()};ft.append(cc,ok);
+m.append(bd,ft);ov.append(m);ov.onclick=e=>{if(e.target===ov)ov.remove()};m.setAttribute("role","dialog");m.setAttribute("aria-modal","true");const esc=e=>{if(e.key==="Escape"){ov.remove();document.removeEventListener("keydown",esc)}};document.addEventListener("keydown",esc);document.body.append(ov);fill()}
+async function doX(){const b=$("dx");b.disabled=true;b.textContent="產生中…";
+try{await dls.save({filename:"兆豐產物_各險別資料.xlsx",data:await makeXlsx()})}catch(e){if(!e||e.code!=="declined")alert("下載未完成："+((e&&e.message)||e))}
+b.textContent="下載 Excel";b.disabled=false}
+$("dx").onclick=()=>{if(!dls){alert("目前環境不支援下載，請用 Claude 內開啟此頁面。");return}openModal()};
+let curTab=1;
+const FY=["114","113","112","111"];
+const FI=[["直接保費收入變動率","業務指標",[4.66,12.91,7.88,12.01]],["直接已付賠款變動率","業務指標",[-1.30,-61.57,-46.74,461.44]],["自留保費變動率","業務指標",[1.35,12.44,1.68,9.07]],["淨值比率","業務指標",[39.36,37.31,19.38,0.05]],
+["資產報酬率","獲利能力指標",[2.95,1.90,-5.36,-40.65]],["權益報酬率","獲利能力指標",[7.64,5.83,-64.39,-242.00]],["資金運用淨收益率","獲利能力指標",[0.76,1.09,1.05,-1.04]],["投資報酬率","獲利能力指標",[0.67,0.82,0.65,-0.75]],["自留綜合率","獲利能力指標",[87.18,93.68,165.23,292.81]],["自留費用率","獲利能力指標",[39.38,37.30,81.35,37.91]],["自留滿期損失率","獲利能力指標",[47.80,56.38,83.88,254.90]],
+["自留保費對權益比率","整體營運指標",[59.63,63.48,119.07,41714.90]],["毛保費對權益比率","整體營運指標",[118.25,123.74,232.21,78785.04]],["淨再保佣金對權益影響率","整體營運指標",[6.69,7.35,15.27,5323.13]],["各種保險負債對權益比率","整體營運指標",[125.46,129.11,235.52,122667.71]],["權益變動率","整體營運指標",[7.90,110.90,35521.24,-99.84]],["費用率","整體營運指標",[26.03,25.51,48.64,27.54]]];
+const CAP=[["115年度上半年",310.22,46.84],["114年度下半年",588.70,39.36],["114年度上半年",580.15,37.89],["113年度下半年",611.29,37.31],["113年度上半年",713.34,36.10],["112年度下半年",368.32,19.38]];
+const Q3N=["保險收入變動率","淨值比率","資產報酬率","權益報酬率","損失組成部分對剩餘保障負債比率","資金運用淨收益率","投資報酬率","淨投資報酬率","營業利益對保險收入比率","稅前純益對保險收入比率","綜合率","費用率","損失率","自留綜合率","保險收入對權益比率","保險合約負債對權益比率","權益變動率","整體費用率"];
+const Q3=Q3N.map((n,i)=>[n,i<2?"每季":"每年",i===0?0.73:i===1?46.84:null]);
+const fsel=new Set([3,5,8,10]),fopt={y:1,c:1};let finBuilt=0;
+const f2=v=>v==null?"—":v.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+const NA="（年度更新，尚未公布）";
+function drawLine(title,cats,series,lf){lf=lf||f2;const W=640,Ht=300,L=62,R=16,T=14,B=30,w=el("div");w.style.marginBottom="18px";w.append(el("div","tname",title));
+const vals=[];series.forEach(s=>s.v.forEach(v=>{if(v!=null)vals.push(v)}));
+if(!vals.length){w.append(el("div","note","沒有資料"));return w}
+const svg=svgEl("svg",{viewBox:"0 0 "+W+" "+Ht,width:"100%"});svg.style.display="block";
+let lo=Math.min(...vals),hi=Math.max(...vals);if(lo>0)lo=0;if(hi<0)hi=0;if(hi===lo)hi=lo+1;const pad=(hi-lo)*.06;if(hi>0)hi+=pad;if(lo<0)lo-=pad;
+const sp=hi-lo,tf=v=>Math.abs(v)>=1000?Math.round(v).toLocaleString("en-US"):v.toFixed(sp<5?2:sp<50?1:0);
+const px=j=>cats.length===1?L+(W-L-R)/2:L+(W-L-R)*j/(cats.length-1),py=v=>T+(Ht-T-B)*(1-(v-lo)/(hi-lo));
+for(let k=0;k<=4;k++){const v=lo+sp*k/4,y=py(v);svg.append(svgEl("line",{x1:L,x2:W-R,y1:y,y2:y,style:"stroke:var(--line)"}));const t=svgEl("text",{x:L-6,y:y+4,"text-anchor":"end","font-size":11,style:"fill:var(--mut)"});t.textContent=tf(v);svg.append(t)}
+cats.forEach((c,j)=>{const t=svgEl("text",{x:px(j),y:Ht-8,"text-anchor":"middle","font-size":11,style:"fill:var(--mut)"});t.textContent=c;svg.append(t)});
+series.forEach((s,n)=>{const col=PAL[n%PAL.length];let d="",first=1;s.v.forEach((v,j)=>{if(v==null){first=1;return}d+=(first?"M":"L")+px(j)+","+py(v);first=0});
+svg.append(svgEl("path",{d,fill:"none",stroke:col,"stroke-width":2.2,"stroke-linejoin":"round"}));
+s.v.forEach((v,j)=>{if(v!=null){const c=svgEl("circle",{cx:px(j),cy:py(v),r:3.8,fill:col}),tt=svgEl("title",{});tt.textContent=s.n+" "+cats[j]+"："+lf(v);c.append(tt);svg.append(c);
+const lb=svgEl("text",{x:px(j),y:py(v)-8,"text-anchor":"middle","font-size":10.5,style:"fill:var(--ink)"});lb.textContent=lf(v);svg.append(lb)}})});
+w.append(svg);return w}
+function tbl2(id,head,rows){const t=$(id);t.replaceChildren();const h=el("tr");head.forEach(x=>h.append(el("th",null,x)));t.append(h);rows.forEach(r=>{const tr=el("tr");r.forEach((x,k)=>{const td=el("td",null,x);if(k>0&&String(x).startsWith("-"))td.className="neg";tr.append(td)});t.append(tr)})}
+function buildFChips(){const host=$("fchips");host.replaceChildren();["業務指標","獲利能力指標","整體營運指標"].forEach(g=>{const w=el("div");w.append(el("div","note",g));const gr=el("div","chips");gr.style.maxHeight="none";
+FI.forEach((f,i)=>{if(f[1]!==g)return;const l=el("label","chip"+(fsel.has(i)?" on":"")),c=document.createElement("input");c.type="checkbox";c.checked=fsel.has(i);c.onchange=()=>{c.checked?fsel.add(i):fsel.delete(i);l.classList.toggle("on",c.checked);fin()};l.append(c,el("span",null,f[0]));gr.append(l)});w.append(gr);host.append(w)})}
+function fin(){if(!finBuilt){finBuilt=1;buildFChips();
+const o=$("fopt");o.append(el("b",null,"選項："));[["y","圖表包含 111 年"],["c","Excel 附折線圖"]].forEach(([k,n])=>{const l=el("label"),c=document.createElement("input");c.type="checkbox";c.checked=!!fopt[k];c.onchange=()=>{fopt[k]=c.checked?1:0;fin()};l.append(c,el("span",null,n));o.append(l)});
+$("fall").onclick=()=>{FI.forEach((_,i)=>fsel.add(i));buildFChips();fin()};$("fnone").onclick=()=>{fsel.clear();buildFChips();fin()};
+tbl2("ct",["年度","資本適足率","淨值比率"],CAP.map(c=>[c[0],c[1].toFixed(2)+"%",c[2].toFixed(2)+"%"]));
+const cc=$("cc"),ct=CAP.slice().reverse(),cats=ct.map(c=>c[0].replace("年度","年"));
+cc.append(drawLine("資本適足率（%）",cats,[{n:"資本適足率",v:ct.map(c=>c[1])}]),drawLine("淨值比率（%）",cats,[{n:"淨值比率",v:ct.map(c=>c[2])}]));
+tbl2("qt",["指標","申報頻率","115年度第3季（%）"],Q3.map(q=>[q[0],q[1],q[2]==null?"—":f2(q[2])]))}
+const idx=[...fsel].sort((a,b)=>a-b);$("fcount").textContent="已選 "+idx.length+" 個指標";$("dl2").disabled=$("dx2").disabled=!idx.length;
+tbl2("ft",["指標",...FY.map(y=>y+"年度")],idx.map(i=>[FI[i][0],...FI[i][2].map(f2)]));
+const fc=$("fc");fc.replaceChildren();const yc=FY.slice().reverse().slice(fopt.y?0:1).map(y=>y+"年");
+if(!idx.length)fc.append(el("div","note","請先勾選指標"));
+idx.forEach(i=>fc.append(drawLine(FI[i][0]+"（%）",yc,[{n:FI[i][0],v:FI[i][2].slice().reverse().slice(fopt.y?0:1)}])))}
+function fbody(){const idx=[...fsel].sort((a,b)=>a-b),W=9638,fw=3200,yw=Math.floor((W-fw)/4),ws=[fw,yw,yw,yw,yw],H1={st:"Heading1",b:1,s:28,c:"1F3864",keep:1,bf:200};
+const hd=(a,w)=>tr(a.map((t,k)=>tc(t,w[k],{sh:"1F3864",c:"FFFFFF",b:1,al:k?"right":null})),1);
+const row=(a,w)=>tr(a.map((t,k)=>tc(t,w[k],{al:k?"right":null,c:String(t).startsWith("-")?"C0392B":null})));
+let x=para("兆豐產物保險　財務概況",{st:"Title",s:40,b:1,c:"1F3864",af:60});
+x+=para("資料來源：金融監督管理委員會保險局「保險業公開資訊觀測站」　單位：%",{s:18,c:"6B7488",af:200});
+x+=para("一、財務業務指標（114年度及以前，IFRS）",H1);
+x+=idx.length?tbl(ws,[hd(["指標",...FY.map(y=>y+"年度")],ws),...idx.map(i=>row([FI[i][0],...FI[i][2].map(f2)],ws))]):para("（未選擇指標）",{s:18});
+x+=para("111年度權益趨近於0（淨值比率0.05%），「對權益比率」等指標數值極端，解讀時請留意。",{s:16,c:"6B7488",bf:60,af:120});
+const w3=[3400,3119,3119];x+=para("二、資本適足性",H1)+tbl(w3,[hd(["年度","資本適足率","淨值比率"],w3),...CAP.map(c=>row([c[0],c[1].toFixed(2)+"%",c[2].toFixed(2)+"%"],w3))]);
+x+=para("自115年起資本適足率由風險資本額制度（RBC）調整為新一代清償能力制度（TIS），115年數值與以前年度不宜直接比較。",{s:16,c:"6B7488",bf:60,af:120});
+const w4=[4800,2000,2838];x+=para("三、115年度第3季指標（新制 IFRS 17）",H1)+tbl(w4,[hd(["指標","申報頻率","115年度第3季"],w4),...Q3.map(q=>row([q[0],q[1],q[2]==null?"—":f2(q[2])],w4))]);
+x+=para("每年申報之指標尚未公布，以「—」表示。",{s:16,c:"6B7488",bf:60});return x}
+async function makeFinXlsx(){const idx=[...fsel].sort((a,b)=>a-b),A=[["分類","指標",...FY.map(y=>y+"年度"),"單位"]];
+idx.forEach(i=>A.push([FI[i][1],FI[i][0],...FI[i][2],"%"]));
+const ws=XLSX.utils.aoa_to_sheet(A);for(let r=1;r<A.length;r++)for(let j=0;j<4;j++){const c=ws[XLSX.utils.encode_cell({r,c:2+j})];if(c)c.z="#,##0.00;-#,##0.00"}
+ws["!cols"]=[{wch:14},{wch:26},...FY.map(()=>({wch:14})),{wch:6}];
+const B=[["資本適足性"],["年度","資本適足率(%)","淨值比率(%)"],...CAP,[],["115年度第3季（新制 IFRS 17）"],["指標","申報頻率","數值(%)"],...Q3.map(q=>[q[0],q[1],q[2]==null?NA:q[2]])];
+const w2=XLSX.utils.aoa_to_sheet(B);w2["!cols"]=[{wch:34},{wch:14},{wch:18}];
+const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"財務業務指標");XLSX.utils.book_append_sheet(wb,w2,"資本適足性與115年第3季");
+const blocks=[];
+if(fopt.c){const G=[],add=(name,cats,vals)=>{const top=G.length;G.push([name+"（%）"]);G.push(["",...cats]);G.push([name,...vals]);blocks.push({r:[name,"x","o"],top,n:1,ny:cats.length});for(let k=0;k<19;k++)G.push([])};
+const yc=FY.slice().reverse().slice(fopt.y?0:1).map(y=>y+"年");idx.forEach(i=>add(FI[i][0],yc,FI[i][2].slice().reverse().slice(fopt.y?0:1)));
+const ct=CAP.slice().reverse(),cs=ct.map(c=>c[0].replace("年度","年"));add("資本適足率",cs,ct.map(c=>c[1]));add("淨值比率",cs,ct.map(c=>c[2]));
+const wg=XLSX.utils.aoa_to_sheet(G);wg["!cols"]=[{wch:26},...cs.map(()=>({wch:14}))];XLSX.utils.book_append_sheet(wb,wg,"圖表資料")}
+const arr=XLSX.write(wb,{bookType:"xlsx",type:"array"});return blocks.length?await addCharts(arr,blocks,4,[0]):new Blob([arr],{type:MIME})}
+function fdl(id,label,file,make){$(id).onclick=async()=>{if(!dls){alert("目前環境不支援下載，請用 Claude 內開啟此頁面。");return}const b=$(id);b.disabled=true;b.textContent="產生中…";
+try{await dls.save({filename:file,data:await make()})}catch(e){if(!e||e.code!=="declined")alert("下載未完成："+((e&&e.message)||e))}b.textContent=label;b.disabled=false}}
+fdl("dl2","下載 Word","兆豐產物_財務概況.docx",makeDocx);fdl("dx2","下載 Excel","兆豐產物_財務概況.xlsx",makeFinXlsx);
+
+const T3C=["112年度","113年度","114年度"];
+const T3=[["市場占有率","o",[3.07,3.17,3.03]],["保費收入（含再保）","n",[10550499462,11856894963,12225833565]],["自留保費","n",[5410093529,6082912542,6165284535]],["自留比率","p",null],["保險賠款（含再保）","n",[11544391169,4749303597,4670425655]],["自留賠款","n",[4433374858,3297738587,2955614604]],["再保費支出","n",[5140405933,5773982421,6060549030]]];
+T3[3][2]=T3[2][2].map((v,j)=>v/T3[1][2][j]);
+const tsel=new Set([0,1,2,3,4,5,6]),topt={d:1,c:1};let tview="b",tBuilt=0;
+const tv=i=>T3[i][2],tcv=i=>{const k=T3[i][1],v=T3[i][2];return k==="n"?v.map(x=>x/1e8):k==="p"?v.map(x=>x*100):v};
+const tf3=(v,k)=>k==="o"?v.toFixed(2)+"%":k==="p"?(v*100).toFixed(1)+"%":Math.round(v).toLocaleString("en-US");
+const sgn=(v,d,u)=>(v>0?"+":v<0?"-":"")+Math.abs(v).toFixed(d)+u;
+const t3chg=i=>{const k=T3[i][1],v=T3[i][2];return[1,2].map(j=>k==="n"?sgn((v[j]/v[j-1]-1)*100,1,"%"):k==="o"?sgn(v[j]-v[j-1],2," pp"):sgn((v[j]-v[j-1])*100,1," pp"))};
+const t3t=i=>T3[i][0]+(T3[i][1]==="n"?"（億元）":"（%）"),t3L=i=>v=>v.toFixed(T3[i][1]==="p"?1:2);
+function buildTChips(){const host=$("tchips");host.replaceChildren();const gr=el("div","chips");gr.style.maxHeight="none";
+T3.forEach((f,i)=>{const l=el("label","chip"+(tsel.has(i)?" on":"")),c=document.createElement("input");c.type="checkbox";c.checked=tsel.has(i);c.onchange=()=>{c.checked?tsel.add(i):tsel.delete(i);l.classList.toggle("on",c.checked);trend()};l.append(c,el("span",null,f[0]));gr.append(l)});host.append(gr)}
+function trend(){if(!tBuilt){tBuilt=1;buildTChips();
+const o=$("topt");o.append(el("b",null,"選項："));[["d","顯示逐年變動"],["c","Excel 附折線圖"]].forEach(([k,n])=>{const l=el("label"),c=document.createElement("input");c.type="checkbox";c.checked=!!topt[k];c.onchange=()=>{topt[k]=c.checked?1:0;trend()};l.append(c,el("span",null,n));o.append(l)});
+$("tall").onclick=()=>{T3.forEach((_,i)=>tsel.add(i));buildTChips();trend()};$("tnone").onclick=()=>{tsel.clear();buildTChips();trend()};
+[["vt","t"],["vc","c"],["vb","b"]].forEach(([id,v])=>{$(id).onclick=()=>{tview=v;trend()}})}
+[["vt","t"],["vc","c"],["vb","b"]].forEach(([id,v])=>$(id).classList.toggle("pri",tview===v));
+const idx=[...tsel].sort((a,b)=>a-b);$("tcount").textContent="已選 "+idx.length+" 個項目";$("dl3").disabled=$("dx3").disabled=!idx.length;
+$("tcard").hidden=tview==="c";$("ccard").hidden=tview==="t";
+const t=$("tt");t.replaceChildren();const h=el("tr");["項目",...T3C,...(topt.d?["113 vs 112","114 vs 113"]:[])].forEach(x=>h.append(el("th",null,x)));t.append(h);
+idx.forEach(i=>{const k=T3[i][1],tr=el("tr");tr.append(el("td",null,T3[i][0]+(k==="n"?"（元）":"")));tv(i).forEach(x=>tr.append(el("td",null,tf3(x,k))));if(topt.d)t3chg(i).forEach(x=>tr.append(el("td",null,x)));t.append(tr)});
+const tc=$("tc");tc.replaceChildren();if(!idx.length)tc.append(el("div","note","請先勾選項目"));
+idx.forEach(i=>tc.append(drawLine(t3t(i),T3C.map(c=>c.replace("年度","年")),[{n:T3[i][0],v:tcv(i)}],t3L(i))))}
+const T3NOTE="變動：金額項目為成長率（%）；市場占有率與自留比率為百分點差（pp）。自留比率＝自留保費 ÷ 保費收入（含再保）。112 年度保險賠款偏高，主要來自健康保險（約 64.3 億元）。";
+function tbody(){const idx=[...tsel].sort((a,b)=>a-b),d=topt.d,w=d?[2400,1600,1600,1600,1219,1219]:[3638,2000,2000,2000];
+const hdr=["項目",...T3C,...(d?["113 vs 112","114 vs 113"]:[])],H1={st:"Heading1",b:1,s:28,c:"1F3864",keep:1,bf:200};
+let x=para("兆豐產物保險　近三年業務概況",{st:"Title",s:40,b:1,c:"1F3864",af:60});
+x+=para("112–114 年度　資料來源：產險業務概況表（RPT-07010801）　金額單位：新臺幣元",{s:18,c:"6B7488",af:200});
+x+=para("同項目逐年比較",H1);
+x+=idx.length?tbl(w,[tr(hdr.map((t,k)=>tc(t,w[k],{sh:"1F3864",c:"FFFFFF",b:1,al:k?"right":null})),1),...idx.map(i=>{const k=T3[i][1],cs=[T3[i][0],...tv(i).map(v=>tf3(v,k)),...(d?t3chg(i):[])];return tr(cs.map((t,j)=>tc(t,w[j],{al:j?"right":null})))})]):para("（未選擇項目）",{s:18});
+x+=para(T3NOTE,{s:16,c:"6B7488",bf:60});return x}
+async function makeTrendXlsx(){const idx=[...tsel].sort((a,b)=>a-b),d=topt.d,A=[["項目","單位",...T3C,...(d?["113 vs 112","114 vs 113"]:[])]],pos={},L=["C","D","E"];
+idx.forEach(i=>{const k=T3[i][1],v=tv(i);pos[i]=A.length+1;A.push([T3[i][0],k==="n"?"元":"%",...(k==="p"?v.map(x=>x):v),...(d?[1,2].map(j=>k==="n"?v[j]/v[j-1]-1:k==="o"?v[j]-v[j-1]:(v[j]-v[j-1])*100):[])])});
+const ws=XLSX.utils.aoa_to_sheet(A);
+idx.forEach(i=>{const k=T3[i][1],r=pos[i];[0,1,2].forEach(j=>{const c=ws[L[j]+r];if(c){c.z=k==="n"?"#,##0":k==="p"?"0.0%":"0.00";if(k==="p"&&pos[1]&&pos[2])c.f=L[j]+pos[2]+"/"+L[j]+pos[1]}});
+if(d)[["F","D","C"],["G","E","D"]].forEach(([o,b,a])=>{const c=ws[o+r];if(c){c.z=k==="n"?"+0.0%;-0.0%;0.0%":k==="o"?'+0.00" pp";-0.00" pp";0.00" pp"':'+0.0" pp";-0.0" pp";0.0" pp"';c.f=k==="n"?b+r+"/"+a+r+"-1":k==="o"?b+r+"-"+a+r:"("+b+r+"-"+a+r+")*100"}})});
+ws["!cols"]=[{wch:22},{wch:6},{wch:18},{wch:18},{wch:18},{wch:14},{wch:14}];
+const N=XLSX.utils.aoa_to_sheet([["資料說明"],["資料來源：產險業務概況表（RPT-07010801），兆豐產物，112–114 年度"],["三年數字與各險別表「總計」逐項核對一致"],[T3NOTE]]);N["!cols"]=[{wch:90}];
+const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"近三年業務概況");XLSX.utils.book_append_sheet(wb,N,"資料說明");
+const blocks=[];if(topt.c&&idx.length){const G=[];idx.forEach(i=>{const top=G.length;G.push([t3t(i)]);G.push(["",...T3C.map(c=>c.replace("年度","年"))]);G.push([t3t(i),...tcv(i)]);blocks.push({r:[t3t(i),"x","o"],top,n:1,ny:3});for(let k=0;k<19;k++)G.push([])});
+const wg=XLSX.utils.aoa_to_sheet(G);wg["!cols"]=[{wch:30},{wch:12},{wch:12},{wch:12}];XLSX.utils.book_append_sheet(wb,wg,"圖表資料")}
+const arr=XLSX.write(wb,{bookType:"xlsx",type:"array"});return blocks.length?await addCharts(arr,blocks,3,[0]):new Blob([arr],{type:MIME})}
+fdl("dl3","下載 Word","兆豐產物_近三年業務概況.docx",makeDocx);fdl("dx3","下載 Excel","兆豐產物_近三年業務概況.xlsx",makeTrendXlsx);
+const HS={1:"business",2:"finance",3:"trend"};
+function setTab(n){curTab=n;[1,2,3].forEach(k=>{$("p"+k).hidden=n!==k;$("dock"+k).style.display=n===k?"":"none";$("t"+k).classList.toggle("on",n===k);$("t"+k).setAttribute("aria-selected",n===k)});if(n===2)fin();if(n===3)trend();if(location.hash!=="#"+HS[n])location.hash=HS[n];window.scrollTo(0,0)}
+$("t1").onclick=()=>setTab(1);$("t2").onclick=()=>setTab(2);$("t3").onclick=()=>setTab(3);
+window.addEventListener("hashchange",()=>{const n=({"#finance":2,"#trend":3})[location.hash]||1;if(n!==curTab)setTab(n)});
+opts();render();setTab(({"#finance":2,"#trend":3})[location.hash]||1);
+(async()=>{try{dls=await claude.use("downloads")}catch(e){dls=null}if(!dls)$("dl").title="需在 Claude 內開啟才能下載"})();
+</script></body></html>
