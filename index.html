@@ -2,7 +2,7 @@
 <html lang="zh-Hant"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-rMfkFFWoB2W1/Zx+4bgHim0WC7vKRVrq6FTeZclH1Z4=' 'sha256-mxDsgvNPX3ynPW34sN0IuTe1QSxDu20MPSoZYQEpafc='; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-rMfkFFWoB2W1/Zx+4bgHim0WC7vKRVrq6FTeZclH1Z4=' 'sha256-oPYRHmUDDAw4WxLtTNF7Vlx8BUtQabhadM2Pe1b4/Ro='; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
 <meta name="robots" content="noindex,nofollow">
 <title>兆豐產物 資訊公開資料查詢</title>
 <style>
@@ -420,7 +420,7 @@ $("t1").onclick=()=>setTab(1);$("t2").onclick=()=>setTab(2);$("t3").onclick=()=>
 window.addEventListener("hashchange",()=>{const n=({"#finance":2,"#trend":3})[location.hash]||1;if(n!==curTab)setTab(n)});
 opts();render();setTab(({"#finance":2,"#trend":3})[location.hash]||1);
 (async()=>{if(typeof claude==="undefined"){dls={save:async({filename,data})=>{
-if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)&&navigator.canShare){try{const f=new File([data],filename,{type:data.type});if(navigator.canShare({files:[f]})){await navigator.share({files:[f],title:filename});return}}catch(e){if(e&&e.name==="AbortError")return}}
+if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)&&navigator.canShare){try{const f=new File([data],filename,{type:data.type});if(navigator.canShare({files:[f]})){await navigator.share({files:[f]});return}}catch(e){if(e&&e.name==="AbortError")return}}
 const u=URL.createObjectURL(data),a=document.createElement("a");a.href=u;a.download=filename;document.body.append(a);a.click();a.remove();
 const tip=document.createElement("div");tip.className="toast";const l=document.createElement("a");l.href=u;l.download=filename;l.textContent="點此儲存 "+filename;const x=document.createElement("button");x.textContent="×";x.setAttribute("aria-label","關閉");const done=()=>{tip.remove();URL.revokeObjectURL(u)};x.onclick=done;tip.append("若沒有自動下載：",l,x);document.body.append(tip);setTimeout(done,90000)}};return}try{dls=await claude.use("downloads")}catch(e){dls=null}if(!dls)$("dl").title="需在 Claude 內開啟才能下載"})();
 </script></body></html>
